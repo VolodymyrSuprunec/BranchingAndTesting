@@ -89,6 +89,13 @@ class HuffmanCode {
 
         return decompressedData;
     }
+    static countUniqueSymbols(data) {
+        const uniqueSymbols = new Set(data);
+        return uniqueSymbols.size;
+    }
+    static isValidCompressedData(compressedData) {
+        return /^[01]*$/.test(compressedData);
+    }
 }
 
 module.exports = HuffmanCode;
