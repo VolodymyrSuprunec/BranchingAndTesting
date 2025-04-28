@@ -1,4 +1,5 @@
 let hamming = require('../index.js').hamming;
+let haffman = require('../index.js').huffman
 let assert = require('chai').assert;
 
 describe('Hamming code testing', function() {
@@ -28,4 +29,24 @@ describe('Hamming code testing', function() {
     assert.deepEqual(decoded, input);
   });
 });
+describe('haffman Unit Tests', function () {
+  it('should correctly build a frequency table', function () {
+      let result = haffman.buildFrequencyTable('aabbbc');
+      assert.deepEqual(result, { a: 2, b: 3, c: 1 });
+  });
 
+  it('should count unique symbols', function () {
+      let result = haffman.countUniqueSymbols('aabbc');
+      assert.equal(result, 3);
+  });
+
+  it('should validate compressed data containing only 0 and 1', function () {
+      let result = haffman.isValidCompressedData('0101011');
+      assert.isTrue(result);
+  });
+
+  it('should return false for invalid compressed data', function () {
+      let result = haffman.isValidCompressedData('01012A01');
+      assert.isFalse(result);
+  });
+});
